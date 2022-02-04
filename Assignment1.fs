@@ -49,3 +49,21 @@ bin (4,1)
 let timediff (h1,m1) (h2,m2) = h2*60+m2 - h1*60-m1
 
 timediff (12,34) (11, 35);; 
+
+//Exercise 1.9
+let minutes (h1,m1) = timediff (0,0) (h1,m1)
+
+minutes (23,1);;
+
+//Exercise 1.10
+let curry f a b = f (a,b)
+
+let uncurry f (a,b) = f a b
+
+//Exercise 1.11
+let empty def pos = def
+
+let theLetterA : int -> char * int = empty ('A', 1);;
+
+theLetterA 0;;
+
