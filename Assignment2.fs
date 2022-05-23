@@ -12,16 +12,18 @@ downto2 10
 //Exercise 2.2 = Write a function removeOddIdx : 'a list -> 'a list that given a list xs returns a list where all odd- indexed elements of xs have been removed
 let removeOddIdx xs = xs |> List.mapi(fun i el -> el,i) |> List.filter(fun (el,i) -> i%2 = 0) |> List.map fst
 removeOddIdx ["hej"; "med"; "dig"]
-//tag 
+//tag listen xs - pipe det og brug mapi så jeg mapper alle index på elementerne med et integer - filter det så lige tal bliver fjernet - brug List.map og tag første element da vi ikke vil have index men kun string
 
 //Exercise 2.3 = Write a function combinePair : 'a list -> ('a * 'a) list that given a list xs returns the list with elements from xs combined into pairs. If xs contains an odd number of elements, then the last element is thrown away.
 let rec combinePair = function
 |[] -> []
-|x::xs when xs.Length = 0 -> []
+|x::xs when xs.IsEmpty -> []
 |x::xs -> (x,xs.Head) :: combinePair xs.Tail
 
 combinePair ["Marry"; "had"; "a"; "little"; "lamb"; "its"; "fleece";
                 "was"; "white"; "as"; "snow"];;
+
+//lav pattern matching, hvis tom liste -> tom liste - hvis listen har ulige antal strings, dvs tail er empty -> tom liste - ellers så lav par med to elementer ad gangen, derefter kør rekursivt på xs' tail
 
 //Exercise 2.4 = nye typer
 type complex = float * float
@@ -54,11 +56,15 @@ let explode1 = function
 |"" -> []
 |s -> s.ToCharArray() |> List.ofArray
 
+//brug s.ToCharArray() og pipe det til List.ofArray
+
 explode1 "hej fede"
 
 let rec explode2 = function
 |"" -> []
-|s -> s.Chars 0 :: explode2 (s.Remove(0,1))
+|s -> s.[0] :: explode2 (s.Remove(0,1))
+
+//brug s.[0] til at få første element i char listen, kør rekursivt på s.Remove(0,1) som fjerner 1 element ad gangen indtil listen er tom
 
 explode2 "hej fede"
 
