@@ -2,9 +2,7 @@ let testStringList = ["hej"; "ko"]
 let testIntegerList = [1;2;3;4]
 
 //List.map applies the function f to every element in the list
-let addFsExt = List.map (fun s -> s + ".fs")
-
-addFsExt testStringList
+List.map (fun s -> s + ".fs") testStringList
 
 //List.exists returns true if the function given holds true for at least one element in the list, and returns false otherwise
 List.exists (fun x -> x>3) testIntegerList
